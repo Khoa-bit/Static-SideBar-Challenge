@@ -1,3 +1,5 @@
+/*! Inspired by Hope-Ui - Responsive Bootstrap 5 Admin Dashboard Template - iqonic.design */
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 /* Custom properties/variables  */
@@ -15,9 +17,11 @@
   --sidebar-expand-width: 26rem;
   --sidebar-collapse-width: 7.6rem;
   --sidebar-header-height: 6.6rem;
-  --sidebar-inline-start-padding: 1.6rem;
+  --sidebar-inline-padding: 1.6rem;
   --sidebar-transition: all 0.5s ease;
   --hover-transition: all 0.3s ease-out;
+  /* TODO: add margin var between sidebar header and sidebar body */
+  /* TODO: Learn about svg and icon size var then calculate --sidebar-collapse-width */
 }
 
 /* Base reset */
@@ -44,6 +48,27 @@ html {
 
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
+  }
+}
+
+/* 1200px / 16px = 75em */
+@media (max-width: 75em) {
+  html {
+    font-size: 60%;
+  }
+}
+
+/* 980px / 16px = 61.25em */
+@media (max-width: 61.25em) {
+  html {
+    font-size: 58%;
+  }
+}
+
+/* 460px / 16px = 28.75em */
+@media (max-width: 28.75em) {
+  html {
+    font-size: 55%;
   }
 }
 
@@ -187,22 +212,16 @@ img {
 
 /* SideBar Expand */
 .sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  max-width: var(--sidebar-expand-width);
+  width: var(--sidebar-expand-width);
+  height: 100vh;
   font-size: 1.6rem;
   background-color: var(--main-white);
   transition: var(--sidebar-transition);
 }
 
 .sidebar .sidebar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   height: var(--sidebar-header-height);
-  padding-inline-start: var(--sidebar-inline-start-padding);
+  padding-inline: var(--sidebar-inline-padding);
   border-block-end: 0.1rem solid var(--main-white-gray);
   margin-block-end: 1.2rem;
 }
@@ -210,6 +229,7 @@ img {
 .sidebar .sidebar-header .navbar-brand {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .sidebar .sidebar-header .navbar-brand svg {
@@ -217,7 +237,7 @@ img {
 }
 
 .sidebar .sidebar-body {
-  max-height: calc(100vh - var(--sidebar-header-height) - 1.3rem);
+  max-height: calc(100vh - var(--sidebar-header-height) - 1.3rem);  /* sidebar-header: margin + border = 1.3rem */
   overflow-x: hidden; /* Hacky to get around scrollbar shrinking sidebar-body */
   overflow-y: auto;
   scrollbar-width: thin;
@@ -238,23 +258,29 @@ img {
   align-items: stretch;
   min-width: var(--sidebar-collapse-width);  /* Hacky to get around scrollbar shrinking sidebar-body */
   list-style: none;
-  padding-inline: var(--sidebar-inline-start-padding);
+  padding-inline: var(--sidebar-inline-padding);  /* Hacky to get around scrollbar shrinking sidebar-body */
 }
 
 .sidebar .sidebar-body .navbar-nav .nav-link {
   display: flex;
   align-items: center;
-  height: 4.4rem;
-  padding-inline: 1.2rem;
+  padding: 1.2rem;
   border-radius: 0.4rem;
+  margin-block-end: 0.4rem;
   filter: grayscale(100%) opacity(0.7);
   transition: var(--hover-transition);
 }
 
-.sidebar .sidebar-body .navbar-nav .nav-link:hover {
+.sidebar .sidebar-body .navbar-nav .nav-link:not(.active):hover {
   filter: grayscale(0%) opacity(1);
   background-color: rgba(58, 87, 232, 0.1);
   color: var(--main-blue);
+}
+
+.sidebar .sidebar-body .navbar-nav .nav-link.active {
+  filter: grayscale(0%) opacity(1);
+  background-color: var(--main-blue);
+  color: var(--main-white);
 }
 
 .sidebar .sidebar-body .navbar-nav .nav-link svg {
@@ -265,31 +291,27 @@ img {
 .sidebar .sidebar-body .navbar-nav .nav-link .item-name {
   margin-left: 1rem;
   transition: var(--sidebar-transition);
+  white-space: nowrap;
 }
 
-/* SideBar Collapse */
+/* SideBar Collapse and Sidebar Toggle button */
 aside {
   display: flex;
-  align-items: center;
+  flex-direction: row-reverse;
   position: fixed;
   top: 0;
   left: 0;
 }
 
 .toggle-sidebar {
-  margin-inline-start: calc(var(--sidebar-expand-width) - 0.4rem);
   transition: var(--sidebar-transition);
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.toggle-sidebar:checked {
-  margin-inline-start: calc(var(--sidebar-collapse-width) - 0.4rem);
-}
-
 .toggle-sidebar:checked ~ .sidebar {
-  max-width: var(--sidebar-collapse-width);
+  width: var(--sidebar-collapse-width);
 }
 
 .toggle-sidebar:checked ~ .sidebar .sidebar-header .navbar-brand .logo-title,
@@ -303,12 +325,18 @@ aside {
   transform: translateX(-100%) scale(0);
 }
 
-/* Sidebar Toggle button */
 .toggle-sidebar + label {
   display: flex;
   align-items: center;
   height: var(--sidebar-header-height);
+  width: 0;  /* Remove invisible label box */
   z-index: 1;
+}
+
+.toggle-sidebar:checked + label {
+  /* TODO: Click away to collapse sidebar? */
+  /* height: 100vh;
+  width: 100vw; */
 }
 
 .toggle-sidebar + label i {
@@ -334,6 +362,10 @@ aside {
 
 /* Main content */
 .main-content {
-  transition: var(--sidebar-transition);
   margin: 3rem 12rem;
+}
+
+.main-content .focus-me:focus-within {
+  display: block;
+  background-color: wheat;
 }
