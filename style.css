@@ -333,12 +333,6 @@ aside {
   z-index: 1;
 }
 
-.toggle-sidebar:checked + label {
-  /* TODO: Click away to collapse sidebar? */
-  /* height: 100vh;
-  width: 100vw; */
-}
-
 .toggle-sidebar + label i {
   display: flex;
   justify-content: center;
@@ -363,9 +357,4 @@ aside {
 /* Main content */
 .main-content {
   margin: 3rem 12rem;
-}
-
-.main-content .focus-me:focus-within {
-  display: block;
-  background-color: wheat;
 }
