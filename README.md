@@ -1,6 +1,8 @@
-# Static Sidebar Challange
+# Static Sidebar Challenge
 
-Click on the ./index.html to see the sidebar. It only uses ./style.css as it's CSS.
+Sidebar was made only with HTML and CSS (Static, not JS)
+
+Click on the ./index.html to see the sidebar. It uses ./style.css as it's CSS. Other directories are for references.
 
 ### **SideBar features:**
 1. Responsive
