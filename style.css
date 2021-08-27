@@ -82,28 +82,6 @@ aside {
   );
 }
 
-/* !Testing Shades of Orange */
-/* .orange {
-  --blue-0:  #fdf5f0;
-  --blue-1:  #f6cdb3;
-  --blue-2:  #f2b995;
-  --blue-3:  #f2b995;
-  --blue-4:  #f2b995;
-  --blue-5:  #eb9158;
-  --blue-6:  #e77d3a;
-  --blue-7:  #e36a1c;
-  --blue-7-rgb:  227, 106, 28;
-  --blue-8:  #c55b18;
-  --blue-9:  #a74d14;
-  --blue-10:  #883f11;
-  --blue-11:  #6a310d;
-  --blue-11-rgb:  106, 49, 13;
-  --blue-12:  #4c2309;
-  --blue-13:  #2d1506;
-  --blue-14:  #0f0702;
-} */
-/* !Testing Shades of Orange */
-
 /* Base reset */
 * {
   margin: 0;
@@ -511,13 +489,8 @@ aside:focus-within .sidebar-toggle i svg {
   box-shadow: 0 0 0.6em 0 var(--sidebar-box-shadow);
 }
 
-/* Main content */
+/* Theme Toggle */
 
-.main-content {
-  margin: 3rem 12rem;
-}
-
-/* ! Testing remove before committing */
 .theme-checkbox {
   /* Hide */
   opacity: 0;
@@ -526,8 +499,9 @@ aside:focus-within .sidebar-toggle i svg {
 }
 
 .theme-label {
-  display: inline-block;
-  margin: 1rem;
+  display: block;
+  width: max-content;
+  margin-inline: auto;
   padding: 1rem;
   border-radius: 0.4rem;
   color: var(--blue-0);
@@ -536,7 +510,7 @@ aside:focus-within .sidebar-toggle i svg {
 }
 
 .orange {
-  margin-inline-start: 36rem;
+  margin-inline-start: 10rem;
 }
 
 .orange:checked ~ * {
@@ -630,4 +604,10 @@ aside:focus-within .sidebar-toggle i svg {
   --blue-12: #3b0055;
   --blue-13: #240033;
   --blue-14: #0c0011;
+}
+
+/* Main content */
+
+.main-content {
+  margin: 3rem 12rem;
 }
