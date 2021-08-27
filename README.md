@@ -6,8 +6,8 @@ Click on the ./index.html to see the sidebar. It only uses ./style.css as it's C
 1. Responsive
 2. Expand and Collapse
 3. Can Collapse by clicking outside the sidebar
-4. Show icon but hide nav-item text when collapsed (Hacky)
-5. Toggle between themes (Blue, Orange, Pink, Gold) (Hacky)
+4. Show icon but hide nav-item text when collapsed _(Hacky)_
+5. Toggle between themes (Blue, Orange, Pink, Gold) _(Hacky)_
 6. Animations
 
 ### Showcase:
